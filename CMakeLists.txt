@@ -10,3 +10,6 @@ set (CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
  
 add_executable(test src/test.cpp)
 target_link_libraries(test glfw ${GL_LIBRARY} glad)
+
+add_executable(triangle src/triangle.cpp)
+target_link_libraries(triangle glfw ${GL_LIBRARY} glad)
