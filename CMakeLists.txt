@@ -13,3 +13,6 @@ target_link_libraries(test glfw ${GL_LIBRARY} glad)
 
 add_executable(triangle src/triangle.cpp)
 target_link_libraries(triangle glfw ${GL_LIBRARY} glad)
+
+add_executable(rectangle src/rectangle.cpp)
+target_link_libraries(rectangle glfw ${GL_LIBRARY} glad)
