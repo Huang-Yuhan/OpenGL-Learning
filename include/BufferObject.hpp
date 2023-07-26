@@ -2,6 +2,7 @@
 
 #include<glad/glad.h>
 #include<iostream>
+#include<vector>
 
 namespace BUFFER_OBJECT
 {
@@ -88,6 +89,24 @@ namespace BUFFER_OBJECT
             }
     };
 
+
+    struct VAO_LAYOUT_ITEM
+    {
+        int length;
+    };
+
+    class VAO_LAYOUT
+    {
+        public:
+            std::vector<VAO_LAYOUT_ITEM> items;
+            void push(int length)
+            {
+                VAO_LAYOUT_ITEM item;
+                item.length = length;
+                items.push_back(item);
+            }
+        
+    };
     class VAO
     {
         private:
@@ -167,6 +186,23 @@ namespace BUFFER_OBJECT
                 glVertexAttribPointer(index, size, type, normalized, stride, pointer);
                 glEnableVertexAttribArray(index);
             }
+            /**
+             * @brief Set the Vertex Attrib Pointer object
+             * 
+             * @param layout 布局
+             */
+            void setVertexAttribPointer(const VAO_LAYOUT & layout)const
+            {
+                int offset = 0;
+                int totalLength = 0 ; 
+                for(int i = 0 ;i < layout.items.size(); i++)totalLength += layout.items[i].length;
+                for(int i = 0; i < layout.items.size(); i++)
+                {
+                    glVertexAttribPointer(i, layout.items[i].length, GL_FLOAT, GL_FALSE, totalLength * sizeof(float),(void *)offset);
+                    glEnableVertexAttribArray(i);
+                    offset += layout.items[i].length * sizeof(float);
+                }
+            }
     };
 
     class EBO
@@ -243,6 +279,6 @@ namespace BUFFER_OBJECT
             {
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage);
             }
-
     };
+
 }

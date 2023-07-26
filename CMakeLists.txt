@@ -16,3 +16,8 @@ target_link_libraries(triangle glfw ${GL_LIBRARY} glad)
 
 add_executable(rectangle src/rectangle.cpp)
 target_link_libraries(rectangle glfw ${GL_LIBRARY} glad)
+
+add_library(stb_image src/stb_image_wrapper.cpp)
+
+add_executable(triangle_with_texture src/triangle_with_texture.cpp)
+target_link_libraries(triangle_with_texture glfw ${GL_LIBRARY} glad stb_image)
