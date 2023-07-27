@@ -21,3 +21,6 @@ add_library(stb_image src/stb_image_wrapper.cpp)
 
 add_executable(triangle_with_texture src/triangle_with_texture.cpp)
 target_link_libraries(triangle_with_texture glfw ${GL_LIBRARY} glad stb_image)
+
+add_executable(fpsmove src/fpsmove.cpp)
+target_link_libraries(fpsmove glfw ${GL_LIBRARY} glad stb_image)
